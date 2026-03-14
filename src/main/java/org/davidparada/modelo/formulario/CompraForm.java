@@ -54,7 +54,9 @@ public class CompraForm {
         return precioBase;
     }
 
-    public Double getPrecioFinal() {return precioFinal;}
+    public Double getPrecioFinal() {
+        return precioFinal;
+    }
 
     public EstadoCompraEnum getEstadoCompra() {
         return estadoCompra;
