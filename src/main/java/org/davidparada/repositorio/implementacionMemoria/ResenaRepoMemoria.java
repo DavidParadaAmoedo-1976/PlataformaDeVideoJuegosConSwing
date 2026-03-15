@@ -7,6 +7,7 @@ import org.davidparada.repositorio.interfaces.IResenaRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ResenaRepoMemoria implements IResenaRepo {
 
@@ -28,11 +29,10 @@ public class ResenaRepoMemoria implements IResenaRepo {
     }
 
     @Override
-    public ResenaEntidad buscarPorId(Long idEntidad) {
+    public Optional<ResenaEntidad> buscarPorId(Long idEntidad) {
         return reseniasEntidad.stream()
                 .filter(r -> r.getIdResena().equals(idEntidad))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ResenaRepoMemoria implements IResenaRepo {
 
     @Override
     public ResenaEntidad actualizar(Long idEntidad, ResenaForm form) {
-        ResenaEntidad resenaEntidad = buscarPorId(idEntidad);
+        Optional<ResenaEntidad> resenaEntidad = buscarPorId(idEntidad);
         if (resenaEntidad == null) {
             return null;
         }
@@ -54,7 +54,7 @@ public class ResenaRepoMemoria implements IResenaRepo {
 
     @Override
     public boolean eliminar(Long idEntidad) {
-        ResenaEntidad resenaEntidad = buscarPorId(idEntidad);
+        Optional<ResenaEntidad> resenaEntidad = buscarPorId(idEntidad);
         if (resenaEntidad == null) {
             return false;
         }
@@ -62,14 +62,14 @@ public class ResenaRepoMemoria implements IResenaRepo {
     }
 
     @Override
-    public List<ResenaEntidad> buscarPorUsuario(Long idUsuario){
+    public List<ResenaEntidad> buscarPorUsuario(Long idUsuario) {
         return reseniasEntidad.stream()
                 .filter(r -> r.getIdUsuario().equals(idUsuario))
                 .toList();
     }
 
     @Override
-    public List<ResenaEntidad> buscarPorJuego(Long idJuego){
+    public List<ResenaEntidad> buscarPorJuego(Long idJuego) {
         return reseniasEntidad.stream()
                 .filter(r -> r.getIdJuego().equals(idJuego))
                 .toList();

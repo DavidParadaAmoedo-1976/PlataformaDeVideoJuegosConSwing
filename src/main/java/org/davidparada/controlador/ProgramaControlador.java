@@ -62,7 +62,7 @@ public class ProgramaControlador {
                 .filter(c -> idJuego == null || c.getIdJuego().equals(idJuego))
                 .filter(c -> {
                     if (desarrollador == null) return true;
-                    JuegoEntidad juego = juegoRepo.buscarPorId(c.getIdJuego());
+                    Optional<JuegoEntidad> juego = juegoRepo.buscarPorId(c.getIdJuego());
                     return juego != null && juego.getDesarrollador().equalsIgnoreCase(desarrollador);
                 })
                 .toList();
